@@ -22,6 +22,8 @@ struct ProgressRing<Center: View>: View {
             center()
         }
         .frame(width: ringSize, height: ringSize)
+        .accessibilityElement(children: .combine)
+        .accessibilityValue("\(Int((progress * 100).rounded())) percent complete")
     }
 }
 
