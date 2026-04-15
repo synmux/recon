@@ -53,10 +53,24 @@ struct HomeView: View {
             Text("Recon")
                 .font(AppFont.display)
                 .foregroundStyle(Color.text)
-            Text("Convert and recon photos in a tap.")
+            Text(tagline)
                 .font(AppFont.body)
-                .foregroundStyle(Color.textSecondary)
         }
+    }
+
+    /// Tagline with the "Re" and "con" sub-letters tinted to reveal that
+    /// Recon is a portmanteau of REsize + CONvert. The rest of the string
+    /// falls through to `.textSecondary` set on the whole attributed string.
+    private var tagline: AttributedString {
+        var string = AttributedString("Resize and convert photos in a tap.")
+        string.foregroundColor = Color.textSecondary
+        if let range = string.range(of: "Re") {
+            string[range].foregroundColor = Color.accent
+        }
+        if let range = string.range(of: "con") {
+            string[range].foregroundColor = Color.accent
+        }
+        return string
     }
 
     private var heroCard: some View {
@@ -79,7 +93,7 @@ struct HomeView: View {
                     Text("Select images")
                         .font(AppFont.listTitle)
                         .foregroundStyle(Color.text)
-                    Text("Choose one or more photos from your library to convert and recon.")
+                    Text("Choose one or more photos from your library to resize and convert.")
                         .font(AppFont.body)
                         .foregroundStyle(Color.textSecondary)
                         .multilineTextAlignment(.center)

@@ -47,7 +47,7 @@ struct DoneView: View {
                 }
             }
             PrimaryCTA("Open Photos") { openPhotos() }
-            PrimaryCTA("Recon More", style: .secondary) { reconMore() }
+            PrimaryCTA("Resize More", style: .secondary) { reconMore() }
         }
     }
 

@@ -14,7 +14,7 @@ struct ReconOptionsView: View {
             VStack(alignment: .leading, spacing: 24) {
                 StepDots(current: 4, total: 4)
                 VStack(alignment: .leading, spacing: 6) {
-                    Text("Recon")
+                    Text("Resize")
                         .font(AppFont.sectionTitle)
                         .foregroundStyle(Color.text)
                     Text("How should the output be sized?")

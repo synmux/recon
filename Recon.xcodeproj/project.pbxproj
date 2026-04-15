@@ -402,7 +402,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Recon saves converted photos to your library.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Recon reads the photos you pick so it can convert and recon them.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Recon reads the photos you pick so it can resize and convert them.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -437,7 +437,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Recon saves converted photos to your library.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Recon reads the photos you pick so it can convert and recon them.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Recon reads the photos you pick so it can resize and convert them.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

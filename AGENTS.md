@@ -1,6 +1,6 @@
 # Recon — AI agent context
 
-A small SwiftUI iOS app that converts and recons photos and writes the outputs to a user album called "Recon". Single-user, fully offline, no analytics, no accounts, no payments.
+A small SwiftUI iOS app that resizes and converts photos and writes the outputs to a user album called "Recon" (the name is a portmanteau of **Re**size + **Con**vert). Single-user, fully offline, no analytics, no accounts, no payments.
 
 ## Stack
 
@@ -67,7 +67,7 @@ The unit suite covers:
 
 ## Manual smoke test (run on a physical device for the most realistic PhotoKit behaviour)
 
-1. Fresh install. Launch → Home screen shows "Recon" / "Convert and recon photos in a tap." / hero card / "Choose Photos" CTA.
+1. Fresh install. Launch → Home screen shows "Recon" / "Resize and convert photos in a tap." (with the "Re" and "con" tinted in the lime accent) / hero card / "Choose Photos" CTA.
 2. Tap **Choose Photos**. Grant **read-write** Photos access when prompted.
 3. Pick three varied photos: one HEIC portrait, one JPEG with GPS, one landscape > 4000 px.
 4. **Selected** (1/4): 3-column thumbnail grid. Tap **Continue**.

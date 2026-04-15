@@ -1,13 +1,13 @@
 # Recon
 
-A tiny iOS app that converts and recons photos, saving the outputs to a "Recon" album in the user's Photos library. Built with SwiftUI on iOS 26.
+A tiny iOS app that resizes and converts photos, saving the outputs to a "Recon" album in the user's Photos library. Built with SwiftUI on iOS 26. The name is a portmanteau of **Re**size + **Con**vert.
 
 ## What it does
 
 1. Pick one or more photos from your library.
 2. Choose an output format: JPEG, WebP, AVIF, PNG, or TIFF.
 3. For the lossy formats, pick a quality level.
-4. Pick a recon mode:
+4. Pick a resize mode:
    - **Keep original** — convert without resizing.
    - **Percentage** — scale each photo by a percent.
    - **Long edge** — cap the longest side to a pixel size.

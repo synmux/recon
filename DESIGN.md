@@ -4,7 +4,7 @@ Handoff document for a fresh implementation session. Accompanies the Figma file 
 
 ## Overview
 
-Recon is a small iOS app that converts and recons photos from the library and writes them to a "Recon" album. Two themes (light and dark) with a lime accent. The app is called "Recon".
+Recon is a small iOS app that resizes and converts photos from the library and writes them to a "Recon" album. The name is a portmanteau of **Re**size + **Con**vert. Two themes (light and dark) with a lime accent. The app is called "Recon".
 
 **Stack.** SwiftUI on the latest iOS (assumes iOS 18+ visual language). Native look and feel — system fonts, system-style blurred backgrounds, haptics on step transitions. No third-party UI libraries. Image I/O via `ImageIO` / `CoreImage`; encoding via `UTType` for JPEG/PNG/TIFF/HEIC, and via the `UTType.webP` / `UTType.avif` encoders available on the latest iOS.
 
@@ -208,7 +208,7 @@ NSPhotoLibraryAddUsageDescription
     "Recon saves converted photos to your library."
 
 NSPhotoLibraryUsageDescription
-    "Recon reads the photos you pick to convert and recon them."
+    "Recon reads the photos you pick so it can resize and convert them."
 
 (optional) LSApplicationQueriesSchemes
     - photos-redirect
