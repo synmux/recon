@@ -10,7 +10,7 @@ enum OutputFormat: String, CaseIterable, Identifiable, Hashable {
 
     var id: String { rawValue }
 
-    var utType: UTType {
+    nonisolated var utType: UTType {
         switch self {
         case .jpeg: return .jpeg
         case .webp: return .webP
@@ -20,7 +20,7 @@ enum OutputFormat: String, CaseIterable, Identifiable, Hashable {
         }
     }
 
-    var filenameExtension: String {
+    nonisolated var filenameExtension: String {
         switch self {
         case .jpeg: return "jpg"
         case .webp: return "webp"
@@ -40,7 +40,7 @@ enum OutputFormat: String, CaseIterable, Identifiable, Hashable {
         }
     }
 
-    var supportsQuality: Bool {
+    nonisolated var supportsQuality: Bool {
         switch self {
         case .jpeg, .webp, .avif: return true
         case .png, .tiff: return false

@@ -16,7 +16,7 @@ extension ReconMode {
     /// `CGImageSourceCreateThumbnailAtIndex` applies `kCGImageSourceThumbnailMaxPixelSize`
     /// to the longer of the two output edges, so every mode here reduces to
     /// "what should the longer edge become?".
-    static func targetMaxPixelSize(for mode: ReconMode, source: CGSize) -> Int? {
+    nonisolated static func targetMaxPixelSize(for mode: ReconMode, source: CGSize) -> Int? {
         let longEdge = max(source.width, source.height)
         let shortEdge = min(source.width, source.height)
         guard longEdge > 0, shortEdge > 0 else { return nil }
