@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct QualityView: View {
-    @Environment(ResizeSession.self) private var session
-    @Environment(ResizeRouter.self) private var router
+    @Environment(ReconSession.self) private var session
+    @Environment(ReconRouter.self) private var router
 
     var body: some View {
         @Bindable var session = session

@@ -3,8 +3,8 @@ import SwiftUI
 import UIKit
 
 struct ProcessingView: View {
-    @Environment(ResizeSession.self) private var session
-    @Environment(ResizeRouter.self) private var router
+    @Environment(ReconSession.self) private var session
+    @Environment(ReconRouter.self) private var router
 
     @State private var errorMessage: String?
     @State private var started = false
@@ -64,21 +64,21 @@ struct ProcessingView: View {
         let assets = session.assets
         let format = session.format
         let quality = session.quality
-        let resize = session.resize
+        let recon = session.recon
         let library = PhotoLibrary()
 
         let addStatus = await PhotoLibrary.requestAddOnlyAccess()
         guard addStatus == .authorized || addStatus == .limited else {
-            errorMessage = "Resize needs add-only Photos access to save converted files."
+            errorMessage = "Recon needs add-only Photos access to save converted files."
             return
         }
 
         let album: PHAssetCollection
         do {
-            album = try await library.findOrCreateResizeAlbum()
+            album = try await library.findOrCreateReconAlbum()
         } catch {
             errorMessage = (error as? LocalizedError)?.errorDescription
-                ?? "Couldn't create the Resize album."
+                ?? "Couldn't create the Recon album."
             return
         }
 
@@ -96,7 +96,7 @@ struct ProcessingView: View {
                         index: idx,
                         format: format,
                         quality: quality,
-                        resize: resize,
+                        recon: recon,
                         album: album,
                         library: library
                     )
@@ -127,7 +127,7 @@ struct ProcessingView: View {
                             index: nextIdx,
                             format: format,
                             quality: quality,
-                            resize: resize,
+                            recon: recon,
                             album: album,
                             library: library
                         )
@@ -148,7 +148,7 @@ struct ProcessingView: View {
         index: Int,
         format: OutputFormat,
         quality: Double,
-        resize: ResizeMode,
+        recon: ReconMode,
         album: PHAssetCollection,
         library: PhotoLibrary
     ) async -> (Int, Error?) {
@@ -157,7 +157,7 @@ struct ProcessingView: View {
                 asset: asset,
                 format: format,
                 quality: quality,
-                resize: resize
+                recon: recon
             )
             try await library.append(fileURL: url, to: album)
             return (index, nil)

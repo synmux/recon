@@ -11,6 +11,6 @@ enum Step: Hashable {
 }
 
 @Observable
-final class ResizeRouter {
+final class ReconRouter {
     var path: [Step] = []
 }

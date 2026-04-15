@@ -12,37 +12,37 @@
 			containerPortal = 55A977A02F8E9091006DA2A1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 55A977A72F8E9091006DA2A1;
-			remoteInfo = Resize;
+			remoteInfo = Recon;
 		};
 		55A977C22F8E9092006DA2A1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 55A977A02F8E9091006DA2A1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 55A977A72F8E9091006DA2A1;
-			remoteInfo = Resize;
+			remoteInfo = Recon;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		55A977A82F8E9091006DA2A1 /* Resize.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Resize.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		55A977B72F8E9092006DA2A1 /* ResizeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ResizeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		55A977C12F8E9092006DA2A1 /* ResizeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ResizeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		55A977A82F8E9091006DA2A1 /* Recon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Recon.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		55A977B72F8E9092006DA2A1 /* ReconTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReconTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		55A977C12F8E9092006DA2A1 /* ReconUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReconUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		55A977AA2F8E9091006DA2A1 /* Resize */ = {
+		55A977AA2F8E9091006DA2A1 /* Recon */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Resize;
+			path = Recon;
 			sourceTree = "<group>";
 		};
-		55A977BA2F8E9092006DA2A1 /* ResizeTests */ = {
+		55A977BA2F8E9092006DA2A1 /* ReconTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = ResizeTests;
+			path = ReconTests;
 			sourceTree = "<group>";
 		};
-		55A977C42F8E9092006DA2A1 /* ResizeUITests */ = {
+		55A977C42F8E9092006DA2A1 /* ReconUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = ResizeUITests;
+			path = ReconUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -75,9 +75,9 @@
 		55A9779F2F8E9091006DA2A1 = {
 			isa = PBXGroup;
 			children = (
-				55A977AA2F8E9091006DA2A1 /* Resize */,
-				55A977BA2F8E9092006DA2A1 /* ResizeTests */,
-				55A977C42F8E9092006DA2A1 /* ResizeUITests */,
+				55A977AA2F8E9091006DA2A1 /* Recon */,
+				55A977BA2F8E9092006DA2A1 /* ReconTests */,
+				55A977C42F8E9092006DA2A1 /* ReconUITests */,
 				55A977A92F8E9091006DA2A1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -85,9 +85,9 @@
 		55A977A92F8E9091006DA2A1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				55A977A82F8E9091006DA2A1 /* Resize.app */,
-				55A977B72F8E9092006DA2A1 /* ResizeTests.xctest */,
-				55A977C12F8E9092006DA2A1 /* ResizeUITests.xctest */,
+				55A977A82F8E9091006DA2A1 /* Recon.app */,
+				55A977B72F8E9092006DA2A1 /* ReconTests.xctest */,
+				55A977C12F8E9092006DA2A1 /* ReconUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,9 +95,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		55A977A72F8E9091006DA2A1 /* Resize */ = {
+		55A977A72F8E9091006DA2A1 /* Recon */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 55A977CB2F8E9092006DA2A1 /* Build configuration list for PBXNativeTarget "Resize" */;
+			buildConfigurationList = 55A977CB2F8E9092006DA2A1 /* Build configuration list for PBXNativeTarget "Recon" */;
 			buildPhases = (
 				55A977A42F8E9091006DA2A1 /* Sources */,
 				55A977A52F8E9091006DA2A1 /* Frameworks */,
@@ -108,18 +108,18 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				55A977AA2F8E9091006DA2A1 /* Resize */,
+				55A977AA2F8E9091006DA2A1 /* Recon */,
 			);
-			name = Resize;
+			name = Recon;
 			packageProductDependencies = (
 			);
-			productName = Resize;
-			productReference = 55A977A82F8E9091006DA2A1 /* Resize.app */;
+			productName = Recon;
+			productReference = 55A977A82F8E9091006DA2A1 /* Recon.app */;
 			productType = "com.apple.product-type.application";
 		};
-		55A977B62F8E9092006DA2A1 /* ResizeTests */ = {
+		55A977B62F8E9092006DA2A1 /* ReconTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 55A977CE2F8E9092006DA2A1 /* Build configuration list for PBXNativeTarget "ResizeTests" */;
+			buildConfigurationList = 55A977CE2F8E9092006DA2A1 /* Build configuration list for PBXNativeTarget "ReconTests" */;
 			buildPhases = (
 				55A977B32F8E9092006DA2A1 /* Sources */,
 				55A977B42F8E9092006DA2A1 /* Frameworks */,
@@ -131,18 +131,18 @@
 				55A977B92F8E9092006DA2A1 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				55A977BA2F8E9092006DA2A1 /* ResizeTests */,
+				55A977BA2F8E9092006DA2A1 /* ReconTests */,
 			);
-			name = ResizeTests;
+			name = ReconTests;
 			packageProductDependencies = (
 			);
-			productName = ResizeTests;
-			productReference = 55A977B72F8E9092006DA2A1 /* ResizeTests.xctest */;
+			productName = ReconTests;
+			productReference = 55A977B72F8E9092006DA2A1 /* ReconTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		55A977C02F8E9092006DA2A1 /* ResizeUITests */ = {
+		55A977C02F8E9092006DA2A1 /* ReconUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 55A977D12F8E9092006DA2A1 /* Build configuration list for PBXNativeTarget "ResizeUITests" */;
+			buildConfigurationList = 55A977D12F8E9092006DA2A1 /* Build configuration list for PBXNativeTarget "ReconUITests" */;
 			buildPhases = (
 				55A977BD2F8E9092006DA2A1 /* Sources */,
 				55A977BE2F8E9092006DA2A1 /* Frameworks */,
@@ -154,13 +154,13 @@
 				55A977C32F8E9092006DA2A1 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				55A977C42F8E9092006DA2A1 /* ResizeUITests */,
+				55A977C42F8E9092006DA2A1 /* ReconUITests */,
 			);
-			name = ResizeUITests;
+			name = ReconUITests;
 			packageProductDependencies = (
 			);
-			productName = ResizeUITests;
-			productReference = 55A977C12F8E9092006DA2A1 /* ResizeUITests.xctest */;
+			productName = ReconUITests;
+			productReference = 55A977C12F8E9092006DA2A1 /* ReconUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -186,7 +186,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 55A977A32F8E9091006DA2A1 /* Build configuration list for PBXProject "Resize" */;
+			buildConfigurationList = 55A977A32F8E9091006DA2A1 /* Build configuration list for PBXProject "Recon" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -200,9 +200,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				55A977A72F8E9091006DA2A1 /* Resize */,
-				55A977B62F8E9092006DA2A1 /* ResizeTests */,
-				55A977C02F8E9092006DA2A1 /* ResizeUITests */,
+				55A977A72F8E9091006DA2A1 /* Recon */,
+				55A977B62F8E9092006DA2A1 /* ReconTests */,
+				55A977C02F8E9092006DA2A1 /* ReconUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -258,12 +258,12 @@
 /* Begin PBXTargetDependency section */
 		55A977B92F8E9092006DA2A1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 55A977A72F8E9091006DA2A1 /* Resize */;
+			target = 55A977A72F8E9091006DA2A1 /* Recon */;
 			targetProxy = 55A977B82F8E9092006DA2A1 /* PBXContainerItemProxy */;
 		};
 		55A977C32F8E9092006DA2A1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 55A977A72F8E9091006DA2A1 /* Resize */;
+			target = 55A977A72F8E9091006DA2A1 /* Recon */;
 			targetProxy = 55A977C22F8E9092006DA2A1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -401,8 +401,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Info.plist;
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Resize saves converted photos to your library.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Resize reads the photos you pick so it can convert and resize them.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Recon saves converted photos to your library.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Recon reads the photos you pick so it can convert and recon them.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -413,7 +413,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = horse.syn.Resize;
+				PRODUCT_BUNDLE_IDENTIFIER = horse.syn.Recon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -436,8 +436,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Info.plist;
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Resize saves converted photos to your library.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Resize reads the photos you pick so it can convert and resize them.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Recon saves converted photos to your library.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Recon reads the photos you pick so it can convert and recon them.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -448,7 +448,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = horse.syn.Resize;
+				PRODUCT_BUNDLE_IDENTIFIER = horse.syn.Recon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -470,7 +470,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = horse.syn.ResizeTests;
+				PRODUCT_BUNDLE_IDENTIFIER = horse.syn.ReconTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -478,7 +478,7 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Resize.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Resize";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Recon.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Recon";
 			};
 			name = Debug;
 		};
@@ -492,7 +492,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = horse.syn.ResizeTests;
+				PRODUCT_BUNDLE_IDENTIFIER = horse.syn.ReconTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -500,7 +500,7 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Resize.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Resize";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Recon.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Recon";
 			};
 			name = Release;
 		};
@@ -512,7 +512,7 @@
 				DEVELOPMENT_TEAM = KJ7LTSBP8N;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = horse.syn.ResizeUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = horse.syn.ReconUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -520,7 +520,7 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Resize;
+				TEST_TARGET_NAME = Recon;
 			};
 			name = Debug;
 		};
@@ -532,7 +532,7 @@
 				DEVELOPMENT_TEAM = KJ7LTSBP8N;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = horse.syn.ResizeUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = horse.syn.ReconUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -540,14 +540,14 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Resize;
+				TEST_TARGET_NAME = Recon;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		55A977A32F8E9091006DA2A1 /* Build configuration list for PBXProject "Resize" */ = {
+		55A977A32F8E9091006DA2A1 /* Build configuration list for PBXProject "Recon" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				55A977C92F8E9092006DA2A1 /* Debug */,
@@ -556,7 +556,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		55A977CB2F8E9092006DA2A1 /* Build configuration list for PBXNativeTarget "Resize" */ = {
+		55A977CB2F8E9092006DA2A1 /* Build configuration list for PBXNativeTarget "Recon" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				55A977CC2F8E9092006DA2A1 /* Debug */,
@@ -565,7 +565,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		55A977CE2F8E9092006DA2A1 /* Build configuration list for PBXNativeTarget "ResizeTests" */ = {
+		55A977CE2F8E9092006DA2A1 /* Build configuration list for PBXNativeTarget "ReconTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				55A977CF2F8E9092006DA2A1 /* Debug */,
@@ -574,7 +574,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		55A977D12F8E9092006DA2A1 /* Build configuration list for PBXNativeTarget "ResizeUITests" */ = {
+		55A977D12F8E9092006DA2A1 /* Build configuration list for PBXNativeTarget "ReconUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				55A977D22F8E9092006DA2A1 /* Debug */,

@@ -1,9 +1,9 @@
 import Photos
 import SwiftUI
 
-struct ResizeOptionsView: View {
-    @Environment(ResizeSession.self) private var session
-    @Environment(ResizeRouter.self) private var router
+struct ReconOptionsView: View {
+    @Environment(ReconSession.self) private var session
+    @Environment(ReconRouter.self) private var router
 
     @State private var percentText: String = ""
     @State private var longEdgeText: String = ""
@@ -14,7 +14,7 @@ struct ResizeOptionsView: View {
             VStack(alignment: .leading, spacing: 24) {
                 StepDots(current: 4, total: 4)
                 VStack(alignment: .leading, spacing: 6) {
-                    Text("Resize")
+                    Text("Recon")
                         .font(AppFont.sectionTitle)
                         .foregroundStyle(Color.text)
                     Text("How should the output be sized?")
@@ -55,7 +55,7 @@ struct ResizeOptionsView: View {
             isSelected: isOriginal
         ) {
             UISelectionFeedbackGenerator().selectionChanged()
-            session.resize = .original
+            session.recon = .original
         }
     }
 
@@ -69,12 +69,12 @@ struct ResizeOptionsView: View {
                 UISelectionFeedbackGenerator().selectionChanged()
                 let value = clampPercent(percentText) ?? 75
                 percentText = String(value)
-                session.resize = .percentage(value)
+                session.recon = .percentage(value)
             }
             if isPercentage {
                 inlineNumberField(text: $percentText, suffix: "%", placeholder: "75") { newValue in
                     if let int = clampPercent(newValue) {
-                        session.resize = .percentage(int)
+                        session.recon = .percentage(int)
                     }
                 }
             }
@@ -91,12 +91,12 @@ struct ResizeOptionsView: View {
                 UISelectionFeedbackGenerator().selectionChanged()
                 let value = clampPx(longEdgeText) ?? defaultLongEdge
                 longEdgeText = String(value)
-                session.resize = .longEdge(value)
+                session.recon = .longEdge(value)
             }
             if isLongEdge {
                 inlineNumberField(text: $longEdgeText, suffix: "px", placeholder: String(defaultLongEdge)) { newValue in
                     if let px = clampPx(newValue) {
-                        session.resize = .longEdge(px)
+                        session.recon = .longEdge(px)
                     }
                 }
             }
@@ -113,12 +113,12 @@ struct ResizeOptionsView: View {
                 UISelectionFeedbackGenerator().selectionChanged()
                 let value = clampPx(shortEdgeText) ?? defaultShortEdge
                 shortEdgeText = String(value)
-                session.resize = .shortEdge(value)
+                session.recon = .shortEdge(value)
             }
             if isShortEdge {
                 inlineNumberField(text: $shortEdgeText, suffix: "px", placeholder: String(defaultShortEdge)) { newValue in
                     if let px = clampPx(newValue) {
-                        session.resize = .shortEdge(px)
+                        session.recon = .shortEdge(px)
                     }
                 }
             }
@@ -126,7 +126,7 @@ struct ResizeOptionsView: View {
     }
 
     private var notice: some View {
-        Text("Keep-original just re-encodes into the chosen format; the Photos library will hold a separate copy in the Resize album.")
+        Text("Keep-original just re-encodes into the chosen format; the Photos library will hold a separate copy in the Recon album.")
             .font(AppFont.caption)
             .foregroundStyle(Color.textSecondary)
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -159,22 +159,22 @@ struct ResizeOptionsView: View {
     }
 
     private var isOriginal: Bool {
-        if case .original = session.resize { return true }
+        if case .original = session.recon { return true }
         return false
     }
 
     private var isPercentage: Bool {
-        if case .percentage = session.resize { return true }
+        if case .percentage = session.recon { return true }
         return false
     }
 
     private var isLongEdge: Bool {
-        if case .longEdge = session.resize { return true }
+        if case .longEdge = session.recon { return true }
         return false
     }
 
     private var isShortEdge: Bool {
-        if case .shortEdge = session.resize { return true }
+        if case .shortEdge = session.recon { return true }
         return false
     }
 
@@ -206,7 +206,7 @@ struct ResizeOptionsView: View {
     }
 
     private func seedDefaults() {
-        switch session.resize {
+        switch session.recon {
         case .percentage(let p): percentText = String(p)
         case .longEdge(let l): longEdgeText = String(l)
         case .shortEdge(let s): shortEdgeText = String(s)

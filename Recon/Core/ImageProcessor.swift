@@ -29,14 +29,14 @@ struct ImageProcessor {
         }
     }
 
-    /// End-to-end: load asset bytes, decode + optionally resize, re-encode, return the
+    /// End-to-end: load asset bytes, decode + optionally recon, re-encode, return the
     /// temp URL of the resulting file. `nonisolated` so callers in `TaskGroup`s can
     /// run it off-main without hopping to the MainActor.
     nonisolated static func process(
         asset: PHAsset,
         format: OutputFormat,
         quality: Double,
-        resize: ResizeMode
+        recon: ReconMode
     ) async throws -> URL {
         try assertEncoderAvailable(format)
 
@@ -48,7 +48,7 @@ struct ImageProcessor {
         let sourceSize = CGSize(width: asset.pixelWidth, height: asset.pixelHeight)
         let (image, sourceProperties) = try decode(
             source: source,
-            resize: resize,
+            recon: recon,
             sourceSize: sourceSize
         )
 
@@ -75,17 +75,17 @@ struct ImageProcessor {
 
     /// Decodes the image at index 0 of `source`, applying EXIF orientation to the
     /// pixels, and optionally downsizing so its longest edge is at most
-    /// `ResizeMode.targetMaxPixelSize(for:source:)`. For `.original` the thumbnail
+    /// `ReconMode.targetMaxPixelSize(for:source:)`. For `.original` the thumbnail
     /// API is still used (with a generous max) to guarantee the orientation bake.
     nonisolated static func decode(
         source: CGImageSource,
-        resize: ResizeMode,
+        recon: ReconMode,
         sourceSize: CGSize
     ) throws -> (image: CGImage, properties: [CFString: Any]) {
         let originalProperties = (CGImageSourceCopyPropertiesAtIndex(source, 0, nil) as? [CFString: Any]) ?? [:]
         let longEdge = max(sourceSize.width, sourceSize.height)
         let fallbackCap = max(1, Int(longEdge.rounded()))
-        let maxPx = ResizeMode.targetMaxPixelSize(for: resize, source: sourceSize) ?? fallbackCap
+        let maxPx = ReconMode.targetMaxPixelSize(for: recon, source: sourceSize) ?? fallbackCap
 
         let options: [CFString: Any] = [
             kCGImageSourceCreateThumbnailFromImageAlways: true,

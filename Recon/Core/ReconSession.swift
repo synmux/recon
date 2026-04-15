@@ -9,11 +9,11 @@ struct ProcessingFailure: Identifiable {
 }
 
 @Observable
-final class ResizeSession {
+final class ReconSession {
     var assets: [PHAsset] = []
     var format: OutputFormat = .jpeg
     var quality: Double = 0.85
-    var resize: ResizeMode = .percentage(75)
+    var recon: ReconMode = .percentage(75)
     var progress: Double = 0
     var processedCount: Int = 0
     var isCancelled: Bool = false
@@ -25,7 +25,7 @@ final class ResizeSession {
         assets = []
         format = .jpeg
         quality = 0.85
-        resize = .percentage(75)
+        recon = .percentage(75)
         progress = 0
         processedCount = 0
         isCancelled = false

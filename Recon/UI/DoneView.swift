@@ -2,8 +2,8 @@ import SwiftUI
 import UIKit
 
 struct DoneView: View {
-    @Environment(ResizeSession.self) private var session
-    @Environment(ResizeRouter.self) private var router
+    @Environment(ReconSession.self) private var session
+    @Environment(ReconRouter.self) private var router
 
     var body: some View {
         VStack(spacing: 0) {
@@ -47,7 +47,7 @@ struct DoneView: View {
                 }
             }
             PrimaryCTA("Open Photos") { openPhotos() }
-            PrimaryCTA("Resize More", style: .secondary) { resizeMore() }
+            PrimaryCTA("Recon More", style: .secondary) { reconMore() }
         }
     }
 
@@ -59,12 +59,12 @@ struct DoneView: View {
         if savedCount == 0 {
             return "Nothing was saved."
         }
-        return "\(savedCount) \(savedCount == 1 ? "photo" : "photos") saved to Resize."
+        return "\(savedCount) \(savedCount == 1 ? "photo" : "photos") saved to Recon."
     }
 
     private var summaryDetail: String {
         if session.failures.isEmpty {
-            return "Find them in Photos under the \"Resize\" album."
+            return "Find them in Photos under the \"Recon\" album."
         }
         let n = session.failures.count
         return "\(n) \(n == 1 ? "file" : "files") failed. You can retry just those."
@@ -77,7 +77,7 @@ struct DoneView: View {
         }
     }
 
-    private func resizeMore() {
+    private func reconMore() {
         session.reset()
         router.path.removeAll()
     }

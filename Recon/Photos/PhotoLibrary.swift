@@ -3,7 +3,7 @@ import Photos
 
 struct PhotoLibrary {
 
-    static let albumName = "Resize"
+    static let albumName = "Recon"
 
     enum LibraryError: LocalizedError {
         case albumLookupFailed
@@ -12,7 +12,7 @@ struct PhotoLibrary {
         var errorDescription: String? {
             switch self {
             case .albumLookupFailed:
-                return "Couldn't find the Resize album after creating it."
+                return "Couldn't find the Recon album after creating it."
             case .accessDenied(let level):
                 let kind = level == .addOnly ? "add" : "read-write"
                 return "Photos access (\(kind)) was denied."
@@ -25,14 +25,14 @@ struct PhotoLibrary {
         await PHPhotoLibrary.requestAuthorization(for: .readWrite)
     }
 
-    /// Prompt-once add-only access; needed to write outputs to the Resize album.
+    /// Prompt-once add-only access; needed to write outputs to the Recon album.
     static func requestAddOnlyAccess() async -> PHAuthorizationStatus {
         await PHPhotoLibrary.requestAuthorization(for: .addOnly)
     }
 
-    /// Returns the existing "Resize" user album, or creates it and returns the new one.
-    func findOrCreateResizeAlbum() async throws -> PHAssetCollection {
-        if let existing = fetchResizeAlbum() {
+    /// Returns the existing "Recon" user album, or creates it and returns the new one.
+    func findOrCreateReconAlbum() async throws -> PHAssetCollection {
+        if let existing = fetchReconAlbum() {
             return existing
         }
 
@@ -71,7 +71,7 @@ struct PhotoLibrary {
 
     // MARK: - Private
 
-    private func fetchResizeAlbum() -> PHAssetCollection? {
+    private func fetchReconAlbum() -> PHAssetCollection? {
         let options = PHFetchOptions()
         options.predicate = NSPredicate(format: "title = %@", Self.albumName)
         return PHAssetCollection.fetchAssetCollections(

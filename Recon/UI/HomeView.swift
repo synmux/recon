@@ -3,8 +3,8 @@ import PhotosUI
 import SwiftUI
 
 struct HomeView: View {
-    @Environment(ResizeSession.self) private var session
-    @Environment(ResizeRouter.self) private var router
+    @Environment(ReconSession.self) private var session
+    @Environment(ReconRouter.self) private var router
 
     @State private var showingPicker = false
     @State private var readAccessDenied = false
@@ -43,17 +43,17 @@ struct HomeView: View {
             .alert("Photos access denied", isPresented: $readAccessDenied) {
                 Button("OK", role: .cancel) {}
             } message: {
-                Text("Open Settings to allow Resize to read your photo library.")
+                Text("Open Settings to allow Recon to read your photo library.")
             }
         }
     }
 
     private var header: some View {
         VStack(alignment: .leading, spacing: 6) {
-            Text("Resize")
+            Text("Recon")
                 .font(AppFont.display)
                 .foregroundStyle(Color.text)
-            Text("Convert and resize photos in a tap.")
+            Text("Convert and recon photos in a tap.")
                 .font(AppFont.body)
                 .foregroundStyle(Color.textSecondary)
         }
@@ -79,13 +79,13 @@ struct HomeView: View {
                     Text("Select images")
                         .font(AppFont.listTitle)
                         .foregroundStyle(Color.text)
-                    Text("Choose one or more photos from your library to convert and resize.")
+                    Text("Choose one or more photos from your library to convert and recon.")
                         .font(AppFont.body)
                         .foregroundStyle(Color.textSecondary)
                         .multilineTextAlignment(.center)
                         .frame(maxWidth: 280)
                 }
-                Text("Processed images are saved to Photos in a \"Resize\" album.")
+                Text("Processed images are saved to Photos in a \"Recon\" album.")
                     .font(AppFont.caption)
                     .foregroundStyle(Color.textSecondary)
                     .multilineTextAlignment(.center)
@@ -122,7 +122,7 @@ struct HomeView: View {
         case .selected: SelectedView()
         case .format: FormatView()
         case .quality: QualityView()
-        case .options: ResizeOptionsView()
+        case .options: ReconOptionsView()
         case .processing: ProcessingView()
         case .done: DoneView()
         }
@@ -131,6 +131,6 @@ struct HomeView: View {
 
 #Preview {
     HomeView()
-        .environment(ResizeSession())
-        .environment(ResizeRouter())
+        .environment(ReconSession())
+        .environment(ReconRouter())
 }

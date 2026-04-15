@@ -1,6 +1,6 @@
 import Testing
 import UniformTypeIdentifiers
-@testable import Resize
+@testable import Recon
 
 struct OutputFormatTests {
 

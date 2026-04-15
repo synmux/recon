@@ -1,7 +1,7 @@
 #!/usr/bin/env swift
 
 // Generates the three AppIcon PNG variants under
-// Resize/Assets.xcassets/AppIcon.appiconset/ from a single SwiftUI view
+// Recon/Assets.xcassets/AppIcon.appiconset/ from a single SwiftUI view
 // so the brand palette is the single source of truth. Run from repo root:
 //
 //     swift scripts/generate_icon.swift
@@ -13,7 +13,7 @@ import ImageIO
 import SwiftUI
 import UniformTypeIdentifiers
 
-let outputDir = URL(fileURLWithPath: "Resize/Assets.xcassets/AppIcon.appiconset")
+let outputDir = URL(fileURLWithPath: "Recon/Assets.xcassets/AppIcon.appiconset")
 
 let lime = Color(.sRGB, red: 0xC6 / 255.0, green: 0xFF / 255.0, blue: 0x3D / 255.0, opacity: 1)
 let nearBlack = Color(.sRGB, red: 0x0B / 255.0, green: 0x0B / 255.0, blue: 0x0C / 255.0, opacity: 1)

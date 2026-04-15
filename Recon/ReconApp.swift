@@ -1,9 +1,9 @@
 import SwiftUI
 
 @main
-struct ResizeApp: App {
-    @State private var session = ResizeSession()
-    @State private var router = ResizeRouter()
+struct ReconApp: App {
+    @State private var session = ReconSession()
+    @State private var router = ReconRouter()
 
     var body: some Scene {
         WindowGroup {

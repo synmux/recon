@@ -1,6 +1,6 @@
 import XCTest
 
-final class ResizeUITests: XCTestCase {
+final class ReconUITests: XCTestCase {
 
     override func setUpWithError() throws {
         continueAfterFailure = false
@@ -11,8 +11,8 @@ final class ResizeUITests: XCTestCase {
         let app = XCUIApplication()
         app.launch()
 
-        XCTAssertTrue(app.staticTexts["Resize"].waitForExistence(timeout: 5))
-        XCTAssertTrue(app.staticTexts["Convert and resize photos in a tap."].exists)
+        XCTAssertTrue(app.staticTexts["Recon"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["Convert and recon photos in a tap."].exists)
         XCTAssertTrue(app.staticTexts["Select images"].exists)
         XCTAssertTrue(app.buttons["Choose Photos"].exists)
     }

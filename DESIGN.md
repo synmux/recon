@@ -1,10 +1,10 @@
-# Resize — Design & Implementation Spec
+# Recon — Design & Implementation Spec
 
 Handoff document for a fresh implementation session. Accompanies the Figma file at <https://www.figma.com/design/WJLUvDuAuHGgNoOBpXYPto>.
 
 ## Overview
 
-Resize is a small iOS app that converts and resizes photos from the library and writes them to a "Resize" album. Two themes (light and dark) with a lime accent. The app is called "Resize".
+Recon is a small iOS app that converts and recons photos from the library and writes them to a "Recon" album. Two themes (light and dark) with a lime accent. The app is called "Recon".
 
 **Stack.** SwiftUI on the latest iOS (assumes iOS 18+ visual language). Native look and feel — system fonts, system-style blurred backgrounds, haptics on step transitions. No third-party UI libraries. Image I/O via `ImageIO` / `CoreImage`; encoding via `UTType` for JPEG/PNG/TIFF/HEIC, and via the `UTType.webP` / `UTType.avif` encoders available on the latest iOS.
 
@@ -71,16 +71,16 @@ Spacing scale: `4, 8, 10, 12, 14, 16, 18, 20, 24, 28, 40`.
 
 ## Screen flow
 
-Linear `NavigationStack` with a 4-step progress indicator (Selected → Format → Quality → Resize). Processing and Done are terminal states, not steps. Back button on steps 2–5; Processing hides back; Done replaces it with "Resize More".
+Linear `NavigationStack` with a 4-step progress indicator (Selected → Format → Quality → Recon). Processing and Done are terminal states, not steps. Back button on steps 2–5; Processing hides back; Done replaces it with "Recon More".
 
 ```
 Home              → .sheet(PHPickerViewController)
 Selected (1/4)    → tap Continue
 Format   (2/4)    → tap Continue
 Quality  (3/4)    → only shown if format is JPEG / WEBP / AVIF
-Resize   (4/4)    → tap "Process N Photos"
+Recon   (4/4)    → tap "Process N Photos"
 Processing        → progress, cancellable
-Done              → Open Photos / Resize More
+Done              → Open Photos / Recon More
 ```
 
 Skip the Quality step automatically when format is PNG or TIFF (progress dots collapse from 4 to 3).
@@ -88,12 +88,12 @@ Skip the Quality step automatically when format is PNG or TIFF (progress dots co
 State lives in a single observable:
 
 ```swift
-@Observable final class ResizeSession {
+@Observable final class ReconSession {
     var assets: [PHAsset] = []
     var format: OutputFormat = .jpeg          // .jpeg .webp .avif .png .tiff
     var quality: Double = 0.85                // 0...1, only for jpeg/webp/avif
-    var resize: ResizeMode = .percentage(75)
-    // ResizeMode: .original, .percentage(Int), .longEdge(Int), .shortEdge(Int)
+    var recon: ReconMode = .percentage(75)
+    // ReconMode: .original, .percentage(Int), .longEdge(Int), .shortEdge(Int)
     var progress: Double = 0                  // 0...1
     var processedCount = 0
 }
@@ -112,13 +112,13 @@ State lives in a single observable:
 
 ### Photos library
 
-Use `PHPicker` for selection (no full library permission needed). To write to the Resize album, request add-only `PHPhotoLibrary` access and create/find an album with `PHAssetCollectionChangeRequest`.
+Use `PHPicker` for selection (no full library permission needed). To write to the Recon album, request add-only `PHPhotoLibrary` access and create/find an album with `PHAssetCollectionChangeRequest`.
 
 ```swift
 // Find-or-create album
-func resizeAlbum() async throws -> PHAssetCollection {
+func reconAlbum() async throws -> PHAssetCollection {
     let fetchOptions = PHFetchOptions()
-    fetchOptions.predicate = NSPredicate(format: "title = %@", "Resize")
+    fetchOptions.predicate = NSPredicate(format: "title = %@", "Recon")
     let fetch = PHAssetCollection.fetchAssetCollections(
         with: .album, subtype: .albumRegular, options: fetchOptions)
     if let a = fetch.firstObject { return a }
@@ -126,7 +126,7 @@ func resizeAlbum() async throws -> PHAssetCollection {
     var placeholder: PHObjectPlaceholder?
     try await PHPhotoLibrary.shared().performChanges {
         let req = PHAssetCollectionChangeRequest
-            .creationRequestForAssetCollection(withTitle: "Resize")
+            .creationRequestForAssetCollection(withTitle: "Recon")
         placeholder = req.placeholderForCreatedAssetCollection
     }
     let id = placeholder!.localIdentifier
@@ -141,7 +141,7 @@ Use `CGImageDestination` with `UTType` for JPEG (`.jpeg`), PNG (`.png`), TIFF (`
 
 ### Resizing
 
-Prefer `CGImageSourceCreateThumbnailAtIndex` with `kCGImageSourceThumbnailMaxPixelSize` for speed and low memory — it also applies EXIF orientation correctly. Compute the max pixel size from the chosen `ResizeMode` using the original `pixelWidth`/`pixelHeight`.
+Prefer `CGImageSourceCreateThumbnailAtIndex` with `kCGImageSourceThumbnailMaxPixelSize` for speed and low memory — it also applies EXIF orientation correctly. Compute the max pixel size from the chosen `ReconMode` using the original `pixelWidth`/`pixelHeight`.
 
 ### Concurrency
 
@@ -149,7 +149,7 @@ Process with a `TaskGroup` bounded to `ProcessInfo.processInfo.activeProcessorCo
 
 ### Saving
 
-Write each encoded file to a temp URL, then `PHAssetCreationRequest.forAsset().addResource(.photo, fileURL:…)` inside a `performChanges` block that also appends the placeholder to the Resize album via `PHAssetCollectionChangeRequest(for: album).addAssets([…])`.
+Write each encoded file to a temp URL, then `PHAssetCreationRequest.forAsset().addResource(.photo, fileURL:…)` inside a `performChanges` block that also appends the placeholder to the Recon album via `PHAssetCollectionChangeRequest(for: album).addAssets([…])`.
 
 ### EXIF
 
@@ -159,9 +159,9 @@ Preserve source EXIF/metadata by reading properties from the source `CGImageSour
 
 - If format is PNG/TIFF the Quality step is skipped and the progress dots read 1·2·3 total.
 - The Estimated size line on Quality updates live as the slider moves (debounced 80ms).
-- If `Resize = Keep original` and `format = source format`, show a subtle notice on the Resize step ("This will create copies with identical settings") — still allow processing; the user may want a copy in the Resize album.
+- If `Recon = Keep original` and `format = source format`, show a subtle notice on the Recon step ("This will create copies with identical settings") — still allow processing; the user may want a copy in the Recon album.
 - Long-edge / short-edge inputs: numeric keypad; cap 1–20000 px; default = current image's matching edge rounded to nearest 100.
-- Cancellation during Processing returns to the Resize step with previous settings intact. Already-written photos stay in the album (don't attempt rollback).
+- Cancellation during Processing returns to the Recon step with previous settings intact. Already-written photos stay in the album (don't attempt rollback).
 - On Done, tapping "Open Photos" uses the `photos-redirect://` URL scheme. Fall back gracefully if it fails.
 - Haptics: `.selection` on step changes, `.success` on Done, `.warning` on error. No haptics during slider drag.
 - Dark-mode accent is very bright — do NOT use it for large fills behind body text. Use `accentSoft` for tinted surfaces.
@@ -169,13 +169,13 @@ Preserve source EXIF/metadata by reading properties from the source `CGImageSour
 ## Project layout
 
 ```
-Resize/
-├─ ResizeApp.swift           // @main, WindowGroup, session injection
+Recon/
+├─ ReconApp.swift           // @main, WindowGroup, session injection
 ├─ Core/
-│  ├─ ResizeSession.swift    // Observable state
+│  ├─ ReconSession.swift    // Observable state
 │  ├─ OutputFormat.swift
-│  ├─ ResizeMode.swift
-│  └─ ImageProcessor.swift   // decode/resize/encode/save
+│  ├─ ReconMode.swift
+│  └─ ImageProcessor.swift   // decode/recon/encode/save
 ├─ Photos/
 │  ├─ PhotoLibrary.swift     // album find-or-create
 │  └─ AssetLoader.swift
@@ -184,7 +184,7 @@ Resize/
 │  ├─ SelectedView.swift
 │  ├─ FormatView.swift
 │  ├─ QualityView.swift
-│  ├─ ResizeOptionsView.swift
+│  ├─ ReconOptionsView.swift
 │  ├─ ProcessingView.swift
 │  ├─ DoneView.swift
 │  └─ Components/
@@ -205,10 +205,10 @@ Resize/
 
 ```
 NSPhotoLibraryAddUsageDescription
-    "Resize saves converted photos to your library."
+    "Recon saves converted photos to your library."
 
 NSPhotoLibraryUsageDescription
-    "Resize reads the photos you pick to convert and resize them."
+    "Recon reads the photos you pick to convert and recon them."
 
 (optional) LSApplicationQueriesSchemes
     - photos-redirect
