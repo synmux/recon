@@ -4,7 +4,7 @@ A small SwiftUI iOS app that resizes and converts photos and writes the outputs 
 
 ## Stack
 
-- Swift 6 (strict concurrency, `SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor`)
+- Swift 5 language mode with `SWIFT_APPROACHABLE_CONCURRENCY = YES` + `SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor` — Swift-6-style main-actor-default without the Swift 6 strictness. `SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES` is also on.
 - SwiftUI on iOS 26.4 — `@Observable`, `NavigationStack`, `@Environment(_:)` for typed environment
 - `PhotosUI` / `Photos` / `ImageIO` / `CoreGraphics` — no third-party libraries
 - Swift Testing (`@Test` / `#expect`) for unit tests; XCTest for a minimal UI smoke test
@@ -46,6 +46,14 @@ Recon/
 
 `DESIGN.md` is the canonical visual spec — tokens, typography, spacing, component specs, screen flow. Views should reference its tables rather than re-deriving measurements.
 
+## Architecture at a glance
+
+- **State.** `ReconSession` (`@Observable`) holds the whole pipeline: `assets, format, quality, recon, progress, processedCount, isCancelled, failures`. `reset()` and `beginProcessing()` are the lifecycle hooks; `DoneView` reads `failures` to show partial-success summaries.
+- **Navigation.** `ReconRouter.path: [Step]` drives `NavigationStack(path:)` in `HomeView`. Cases: `selected → format → quality? → options → processing → done`. The resize-options step is `.options` (not `.recon`) — the screen title is "Recon" but the enum case isn't. `QualityView` is skipped for PNG/TIFF via `session.showsQualityStep`.
+- **Pipeline.** `ImageProcessor.process(...)` is `nonisolated static async` and runs entirely off-main: load PHAsset bytes → `CGImageSourceCreateThumbnailAtIndex` (applies EXIF orientation + downsamples in one pass) → `sanitize` forces orientation=1 → `CGImageDestination` encode to a temp URL → `PhotoLibrary.append` consumes that file (`shouldMoveFile = true`) inside a single `performChanges` transaction that also links the new asset into the album.
+- **Concurrency.** `ProcessingView.run()` is a bounded producer/consumer `TaskGroup`: seed `ProcessInfo.activeProcessorCount` tasks, refill one-for-one as each completes. `session.isCancelled` is checked between completions and triggers `group.cancelAll()` — already-saved outputs stay in the album (no rollback).
+- **Asset order.** `PHAsset.fetchAssets(withLocalIdentifiers:)` returns in unspecified order. `AssetLoader.resolveAssets` projects back through the original identifier array to preserve pick order — don't refactor that away.
+
 ## Build & test
 
 ```sh
@@ -57,6 +65,14 @@ xcodebuild -project Recon.xcodeproj -scheme Recon \
 # Run the full test suite (Swift Testing + XCUITest)
 xcodebuild -project Recon.xcodeproj -scheme Recon \
   -destination 'platform=iOS Simulator,name=iPhone 17,OS=26.4' test
+
+# Run just one test (or one suite) — much faster iteration than the full run
+xcodebuild -project Recon.xcodeproj -scheme Recon \
+  -destination 'platform=iOS Simulator,name=iPhone 17,OS=26.4' \
+  -only-testing:ReconTests/ImageProcessorTests/outputOrientationAlwaysUp test
+
+# If 'iPhone 17' / iOS 26.4 isn't installed locally, list what's available:
+xcrun simctl list devices available iOS
 ```
 
 The unit suite covers:
@@ -97,3 +113,4 @@ The unit suite covers:
 - Pipeline code (anything that runs off main) is `nonisolated`. Views and session state default to `@MainActor` via the project build setting.
 - `EXIF` / orientation: `ImageProcessor.sanitize(properties:)` forces orientation = 1 on every output — the single regression guard for the double-rotation class of bugs. Don't remove it.
 - `PHPicker` returns `PHPickerResult`s with `assetIdentifier`. Resolving those to `PHAsset` requires **read-write** (not just add-only) Photos access. Both usage-description keys are therefore required.
+- `Info.plist` at the repo root only carries `LSApplicationQueriesSchemes = [photos-redirect]` (for the "Open Photos" deep-link on `DoneView`). The two Photos usage strings live in the Xcode target's build settings as `INFOPLIST_KEY_NSPhotoLibraryUsageDescription` and `INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription` — don't look for them in the plist file itself.
