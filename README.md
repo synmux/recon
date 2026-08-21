@@ -6,9 +6,7 @@ Free. Offline. On-device. No accounts, no analytics, no tracking, no network acc
 
 ## Why this exists
 
-I wanted a small, fast utility to resize and convert photos on my phone. Every other option I tried was tangled in adverts, cluttered with features I didn't need, or quietly uploading the originals somewhere. Recon does one job, on-device, and then gets out of the way.
-
-> _Draft from Claude based on the note in TODO.md — Dave, rewrite this in your own voice when you get a moment._
+A small, fast utility to resize and convert photos on a phone. Every other option I tried was tangled in adverts or full of features I didn't need. Does one job, on-device, and then gets out of the way.
 
 ## What it does
 
